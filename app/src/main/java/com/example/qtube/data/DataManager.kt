@@ -35,6 +35,7 @@ object DataManager {
         itemsList.add(items)
     }
 
+
     //This function parse the data from json and store it in lists.
     fun parser(jsonUrl: String) : List<VideoResponse> {
         cleanJson(jsonUrl)
