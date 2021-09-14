@@ -12,10 +12,16 @@ class MainActivity : AppCompatActivity() ,VideoIntectionListener{
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        fun setup(){
-            adapter=VideoAdapter(DataManager.video.reversed(),this)
-            binding.recyclerView.adapter=adapter
+        setup()
+    }
+
+    fun setup(){
+        for (i in 0..10) {
+            val video = Video("241241","32jgsd",42)
+            DataManager.addvideo(video)
         }
+        adapter=VideoAdapter(DataManager.video.reversed(),this)
+        binding.recyclerView.adapter=adapter
     }
     private fun addnewVideo(){
 
