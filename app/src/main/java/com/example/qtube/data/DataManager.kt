@@ -13,7 +13,8 @@ object DataManager {
     //Region initialize variables
 
     val videoList = mutableListOf<VideoResponse>()
-    val videos :List<VideoResponse> get() = videoList
+    val videos : List<VideoResponse> get() = videoList
+
 
     val feedsList = mutableListOf<Feeds>()
     val feeds:List<Feeds> get() = feedsList
@@ -24,9 +25,9 @@ object DataManager {
     val client = OkHttpClient()
     //End region
 
-    private fun addVideo(videoResponse: VideoResponse) : VideoResponse{
+
+    fun addVideo(videoResponse: VideoResponse) {
         videoList.add(videoResponse)
-        return VideoResponse(feeds)
     }
     fun addFeeds(feeds: Feeds){
         feedsList.add(feeds)
@@ -35,9 +36,8 @@ object DataManager {
         itemsList.add(items)
     }
 
-
     //This function parse the data from json and store it in lists.
-    fun parser(jsonUrl: String) : List<VideoResponse> {
+    fun parser(jsonUrl: String) {
         cleanJson(jsonUrl)
         val request = Request.Builder().url(jsonUrl).build()
 
@@ -45,33 +45,15 @@ object DataManager {
             override fun onFailure(call: Call, e: IOException) {
                 //TODO Display lotti animation of 404 error or something XD.
             }
+
             override fun onResponse(call: Call, response: Response) {
                 response.body?.string()?.let { jsonString ->
                     val response = Gson().fromJson(jsonString,VideoResponse::class.java)
-
-                    val idFeed = response.feed?.joinToString { it.id.toString() }
-                    val titleFeed = response.feed?.joinToString { it.title.toString() }
-                    val descriptionFeed = response.feed?.joinToString { it.description.toString() }
-                    val imageFeed = response.feed?.joinToString { it.image.toString() }
-
-                    val itemId = response.feed?.joinToString { it.items?.joinToString { it.id.toString() }.toString() }
-                    val itemTitle = response.feed?.joinToString { it.items?.joinToString { it.title.toString() }.toString() }
-                    val itemDescription = response.feed?.joinToString { it.items?.joinToString { it.description.toString() }.toString() }
-                    val itemDirector = response.feed?.joinToString { it.items?.joinToString { it.director.toString() }.toString() }
-                    val itemUrl = response.feed?.joinToString { it.items?.joinToString { it.url.toString() }.toString() }
-                    val itemYear= response.feed?.joinToString { it.items?.joinToString { it.year.toString() }.toString() }
-                    val itemDuration= response.feed?.joinToString { it.items?.joinToString { it.duration.toString() }.toString() }
-                    val itemArt = response.feed?.joinToString { it.items?.joinToString { it.art.toString() }.toString() }
-
-                    addItems(Items(itemId,itemYear,itemDuration,itemTitle,itemDirector,itemDescription,itemUrl,itemArt))
-                    addFeeds(Feeds(idFeed,titleFeed,descriptionFeed,imageFeed, items))
-                    addVideo(VideoResponse(feeds))
-
-                    Log.i("testTag", videos.toString())
-                }
+                    response.feed?.forEach { addFeeds(it) }
+                    response.feed?.forEach { it.items?.forEach{ it -> addItems(it)}} }
+                Log.i("test", items.toString())
             }
         })
-        return videos
     }
 
     //This function clean the json from unwanted information
@@ -82,6 +64,5 @@ object DataManager {
     fun itemsSize() = items.size
     fun feedsSize() = feeds.size
     fun videosSize() = videos.size
-
-
+    fun videosDetailsSize() = videoList.size
 }
