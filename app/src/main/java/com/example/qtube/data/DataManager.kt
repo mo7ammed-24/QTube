@@ -4,6 +4,7 @@ import VideoResponse
 import android.util.Log
 import com.example.jsonparser.data.Items
 import com.example.qtube.data.domain.Feeds
+import com.example.qtube.util.Probarty
 import com.google.gson.Gson
 import okhttp3.*
 import java.io.IOException
@@ -11,6 +12,7 @@ import java.io.IOException
 object DataManager {
 
     //Region initialize variables
+
 
     val videoList = mutableListOf<VideoResponse>()
     val videos: List<VideoResponse> get() = videoList
@@ -70,4 +72,19 @@ object DataManager {
     fun itemsSize() = items.size
     fun feedsSize() = feeds.size
     fun videosSize() = videos.size
+
+
+
+    fun sortFeedsBy (property : Probarty) :List<Items>
+            = when (property) {
+        Probarty.ALL -> {
+            items.sortedByDescending { it.id }
+        }
+
+        Probarty.Year -> {
+            items.sortedByDescending { it.year }
+        }
+
+    }
+
 }

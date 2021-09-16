@@ -3,14 +3,16 @@ package com.example.qtube.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.jsonparser.data.Items
 import com.example.qtube.R
+import com.example.qtube.data.domain.Feeds
 import com.example.qtube.databinding.ItemVideoBinding
 import com.example.qtube.ui.adapters.listener.VideoIntectionListener
 
-class VideoAdapter(private val itemList: List<Items>, val listener: VideoIntectionListener):RecyclerView.Adapter<VideoAdapter.VideoHolder>() {
+class VideoAdapter(private var itemList: List<Items>, val listener: VideoIntectionListener):RecyclerView.Adapter<VideoAdapter.VideoHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoHolder {
         val view= LayoutInflater.from(parent.context).inflate(R.layout.item_video,parent,false)
@@ -38,5 +40,12 @@ class VideoAdapter(private val itemList: List<Items>, val listener: VideoIntecti
 
     class VideoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = ItemVideoBinding.bind(itemView)
+    }
+
+
+    fun updateData(newList:List<Items>) {
+        val diffrentResult = DiffUtil.calculateDiff(VideoDiffutil(itemList,newList))
+        itemList = newList
+        diffrentResult.dispatchUpdatesTo(this)
     }
 }
