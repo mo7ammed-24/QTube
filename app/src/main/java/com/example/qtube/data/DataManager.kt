@@ -40,7 +40,7 @@ object DataManager {
     }
 
     //This function parse the data from json and store it in lists.
-    fun parser(jsonUrl: String) {
+    fun parser(jsonUrl: String, completion: (isCompleted: Boolean) -> Unit) {
         cleanJson(jsonUrl)
         val request = Request.Builder().url(jsonUrl).build()
 
@@ -54,7 +54,7 @@ object DataManager {
                     val response = Gson().fromJson(jsonString, VideoResponse::class.java)
                     //Loop through feeds to store object in feeds list.
                     response.feed?.forEach { addFeeds(it) }
-
+                    completion(true)
                 }
             }
         })

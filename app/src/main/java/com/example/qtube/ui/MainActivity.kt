@@ -27,15 +27,13 @@ class MainActivity : AppCompatActivity() , VideoIntectionListener {
     }
 
     fun setup(){
-            DataManager.parser(Constants.JSON_URL)
-    Thread.sleep(20000)
-
-        runOnUiThread {
-            adapter = VideoAdapter(itemList = DataManager.sortFeedsBy(Proberty.ALL), this)
-            binding.recyclerView.adapter = adapter
-        }
-
-        chipGroupFunction()
+            DataManager.parser(Constants.JSON_URL) {
+                runOnUiThread {
+                    adapter = VideoAdapter(itemList = DataManager.sortFeedsBy(Proberty.ALL), this)
+                    binding.recyclerView.adapter = adapter
+                }
+                chipGroupFunction()
+            }
     }
 
     @SuppressLint("WrongViewCast")
