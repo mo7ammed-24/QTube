@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.qtube.R
 import com.example.qtube.util.Constants
 import com.example.qtube.databinding.ActivityPlayerBinding
 import com.google.android.exoplayer2.MediaItem
@@ -19,6 +20,7 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_QTube)
         binding = ActivityPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         videoURL = intent.getStringExtra(Constants.VIDEO_URL).toString()

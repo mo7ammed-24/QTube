@@ -3,15 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Ali/AndroidStudioProjects/QTube/app/src/main/res/layout/activity_main.xml" value="0.1265625" />
-        <entry key="..\:/Users/Ali/AndroidStudioProjects/QTube/app/src/main/res/layout/activity_player.xml" value="0.1265625" />
-        <entry key="..\:/Users/Ali/AndroidStudioProjects/QTube/app/src/main/res/layout/item_video.xml" value="0.1265625" />
         <entry key="..\:/Users/Basheer Developer/Desktop/QTube/QTube/app/src/main/res/layout/activity_main.xml" value="0.2617753623188406" />
         <entry key="..\:/Users/Basheer Developer/Desktop/QTube/QTube/app/src/main/res/layout/item_video.xml" value="0.2617753623188406" />
-        <entry key="..\:/qtube/QTube/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/qtube/QTube/app/src/main/res/drawable/splash_theme.xml" value="0.14427083333333332" />
+        <entry key="..\:/qtube/QTube/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/qtube/QTube/app/src/main/res/layout/activity_player.xml" value="0.13333333333333333" />
         <entry key="..\:/qtube/QTube/app/src/main/res/layout/item_video.xml" value="0.2512820512820513" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_player.xml" value="0.1503623188405797" />
       </map>
     </option>
   </component>
