@@ -10,6 +10,13 @@ import com.example.qtube.data.DataManager
 import com.example.qtube.databinding.ActivityMainBinding
 import com.example.qtube.ui.adapters.VideoAdapter
 import com.example.qtube.ui.adapters.listener.VideoIntectionListener
+import com.example.qtube.util.Probarty
+import android.annotation.SuppressLint
+
+import com.google.android.material.chip.ChipGroup
+
+
+
 
 class MainActivity : AppCompatActivity() , VideoIntectionListener {
     lateinit var binding:ActivityMainBinding
@@ -26,8 +33,27 @@ class MainActivity : AppCompatActivity() , VideoIntectionListener {
         runOnUiThread{
             DataManager.parser(Constants.mainUrl)
         }
-        adapter = VideoAdapter(DataManager.items,this)
+        adapter = VideoAdapter(DataManager.items, this)
         binding.recyclerView.adapter = adapter
+
+        chipGroupFunction()
+    }
+
+    @SuppressLint("WrongViewCast")
+
+    private fun chipGroupFunction() {
+  //      val chipGroup = binding.chipGroup
+//        val checkedChipId = chipGroup.checkedChipId // Returns View.NO_ID if singleSelection = false
+//        val checkedChipIds = chipGroup.checkedChipIds // Returns a list of the selected chips' IDs, if any
+
+        val chipGroup = findViewById<ChipGroup>(R.id.chip_group)
+        chipGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.all -> adapter.updateData(DataManager.sortFeedsBy(Probarty.Year))
+                R.id.year -> adapter.updateData(DataManager.sortFeedsBy(Probarty.Year))
+            }
+        }
+
 
     }
 
@@ -40,4 +66,7 @@ class MainActivity : AppCompatActivity() , VideoIntectionListener {
 
         startActivity(intent)
     }
+
+
+
 }
