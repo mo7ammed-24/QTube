@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Akram/StudioProjects/QTube4/app/src/main/res/drawable/splash_theme.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Akram/StudioProjects/QTube4/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Akram/StudioProjects/QTube4/app/src/main/res/layout/item_video.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Akram/StudioProjects/QTube4/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Akram/StudioProjects/QTube4/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Ali/AndroidStudioProjects/QTube/app/src/main/res/layout/activity_main.xml" value="0.1265625" />
+        <entry key="..\:/Users/Ali/AndroidStudioProjects/QTube/app/src/main/res/layout/activity_player.xml" value="0.1265625" />
+        <entry key="..\:/Users/Ali/AndroidStudioProjects/QTube/app/src/main/res/layout/item_video.xml" value="0.1265625" />
         <entry key="..\:/Users/Basheer Developer/Desktop/QTube/QTube/app/src/main/res/layout/activity_main.xml" value="0.2617753623188406" />
         <entry key="..\:/Users/Basheer Developer/Desktop/QTube/QTube/app/src/main/res/layout/item_video.xml" value="0.2617753623188406" />
         <entry key="..\:/qtube/QTube/app/src/main/res/layout/activity_main.xml" value="0.33" />

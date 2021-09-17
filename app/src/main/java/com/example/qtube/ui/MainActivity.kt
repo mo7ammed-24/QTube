@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.jsonparser.data.Items
+import com.example.qtube.R
 import com.example.qtube.util.Constants
 import com.example.qtube.data.DataManager
 import com.example.qtube.databinding.ActivityMainBinding
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() , VideoIntectionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
+        setTheme(R.style.Theme_QTube)
         setContentView(binding.root)
         setup()
     }
