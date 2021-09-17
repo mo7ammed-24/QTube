@@ -28,11 +28,9 @@ class VideoAdapter(private var itemList: List<Items>, val listener: VideoIntecti
             Glide.with(binding.root).load(currentVideo.art).into(binding.mainImage)
             Glide.with(binding.root).load(currentVideo.art).into(binding.profile)
 
-            binding.title.setOnClickListener(View.OnClickListener {
+            binding.root.setOnClickListener(View.OnClickListener {
                 listener.onclickVideoItem(currentVideo)
             })
-
-
         }
     }
 

@@ -6,8 +6,6 @@ import com.example.jsonparser.data.Items
 class VideoDiffutil(val oldList: List<Items>, val newList: List<Items>) : DiffUtil.Callback() {
     override fun getOldListSize() = oldList.size
     override fun getNewListSize() = newList.size
-
-
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         return (
                 oldList[oldItemPosition].title == newList[newItemPosition].title

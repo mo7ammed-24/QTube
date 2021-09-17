@@ -13,6 +13,7 @@ import com.example.qtube.ui.adapters.listener.VideoIntectionListener
 import com.example.qtube.util.Proberty
 import android.annotation.SuppressLint
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 
 
@@ -28,9 +29,12 @@ class MainActivity : AppCompatActivity(), VideoIntectionListener {
     }
 
     fun setup() {
+        binding.loading.visibility = View.VISIBLE
         DataManager.parser(Constants.JSON_URL) { isSucces ->
             if (isSucces) {
+
                 runOnUiThread {
+                    binding.loading.visibility = View.GONE
                     adapter = VideoAdapter(itemList = DataManager.sortFeedsBy(Proberty.ALL), this)
                     binding.recyclerView.adapter = adapter
                 }
@@ -38,6 +42,7 @@ class MainActivity : AppCompatActivity(), VideoIntectionListener {
             }
             else
             {
+                binding.loading.visibility = View.GONE
                 Toast.makeText(this,"Try again later",Toast.LENGTH_SHORT).show()
             }
         }
