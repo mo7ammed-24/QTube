@@ -14,9 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/black"
+        app:cardElevation="8dp"
         />
 
 
@@ -33,6 +34,7 @@
         />
 
     <ImageView
+        android:scaleType="centerCrop"
         android:id="@+id/main_image"
         android:layout_width="match_parent"
         android:layout_height="230dp"
@@ -62,7 +64,7 @@
         android:id="@+id/options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="::"
+        android:text=":"
         android:layout_marginEnd="8dp"
         android:textColor="@color/black"
         android:textSize="24dp"
@@ -74,7 +76,6 @@
         app:layout_constraintVertical_bias="0.333" />
 
     <ImageView
-        android:scaleType="centerCrop"
         android:id="@+id/play"
         android:layout_width="48dp"
         android:layout_height="48dp"

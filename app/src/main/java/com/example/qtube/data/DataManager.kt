@@ -65,16 +65,36 @@ object DataManager {
         }
 
         Proberty.HISTORICAL -> {
-            feedsList[1].items as List<Items>
+            feedsList[0].items as List<Items>
         }
         Proberty.M1910 -> {
-            feedsList[2].items as List<Items>
+            feedsList[1].items as List<Items>
         }
         Proberty.CHAPLIN -> {
-            feedsList[3].items as List<Items>
+            feedsList[2].items as List<Items>
         }
 
 
+    }
+
+    fun showTimeFormat(durationInMins:String): String {
+        val durationInMinsNumber = durationInMins.toLong()
+        val minutes = durationInMinsNumber/60
+        val seconds = durationInMinsNumber/360
+        return when {
+            minutes <10 && seconds<10 -> {
+                "0$minutes:0$seconds"
+            }
+            minutes<10 && seconds>=10 -> {
+                "0$minutes:$seconds"
+            }
+            minutes>=10 && seconds<10 -> {
+                "$minutes:0$seconds"
+            }
+            else -> {
+                "$minutes:$seconds"
+            }
+        }
     }
 
 }

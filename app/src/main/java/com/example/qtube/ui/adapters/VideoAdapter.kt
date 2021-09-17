@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.jsonparser.data.Items
 import com.example.qtube.R
+import com.example.qtube.data.DataManager
 import com.example.qtube.data.domain.Feeds
 import com.example.qtube.databinding.ItemVideoBinding
 import com.example.qtube.ui.adapters.listener.VideoIntectionListener
@@ -24,7 +25,7 @@ class VideoAdapter(private var itemList: List<Items>, val listener: VideoIntecti
 
         holder.apply {
             binding.title.text = currentVideo.title
-            binding.time.text = currentVideo.duration
+            binding.time.text = DataManager.showTimeFormat(durationInMins = currentVideo.duration!!)
             Glide.with(binding.root).load(currentVideo.art).into(binding.mainImage)
             Glide.with(binding.root).load(currentVideo.art).into(binding.profile)
 
