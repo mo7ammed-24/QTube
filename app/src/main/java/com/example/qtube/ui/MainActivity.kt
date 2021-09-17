@@ -32,11 +32,12 @@ class MainActivity : AppCompatActivity() , VideoIntectionListener {
     fun setup(){
         runOnUiThread{
             DataManager.parser(Constants.mainUrl)
+
         }
         adapter = VideoAdapter(DataManager.items, this)
         binding.recyclerView.adapter = adapter
 
-        chipGroupFunction()
+       // chipGroupFunction()
     }
 
     @SuppressLint("WrongViewCast")
