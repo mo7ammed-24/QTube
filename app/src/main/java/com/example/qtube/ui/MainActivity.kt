@@ -12,7 +12,6 @@ import com.example.qtube.ui.adapters.VideoAdapter
 import com.example.qtube.ui.adapters.listener.VideoIntectionListener
 import com.example.qtube.util.Proberty
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity(), VideoIntectionListener {
 
                 runOnUiThread {
                     binding.loading.visibility = View.GONE
-                    adapter = VideoAdapter(itemList = DataManager.sortFeedsBy(Proberty.ALL), this)
+                    adapter = VideoAdapter(itemList = DataManager.returnVideoOfType(Proberty.ALL), this)
                     binding.recyclerView.adapter = adapter
                 }
                 chipGroupFunction()
@@ -52,12 +51,13 @@ class MainActivity : AppCompatActivity(), VideoIntectionListener {
     private fun chipGroupFunction() {
         binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.all -> adapter.updateData(DataManager.sortFeedsBy(Proberty.ALL))
-                R.id.historical -> adapter.updateData(DataManager.sortFeedsBy(Proberty.HISTORICAL))
-                R.id.year -> adapter.updateData(DataManager.sortFeedsBy(Proberty.M1910))
-                R.id.others -> adapter.updateData(DataManager.sortFeedsBy(Proberty.CHAPLIN))
+                R.id.all -> adapter.updateData(DataManager.returnVideoOfType(Proberty.ALL))
+                R.id.historical -> adapter.updateData(DataManager.returnVideoOfType(Proberty.HISTORICAL))
+                R.id.year -> adapter.updateData(DataManager.returnVideoOfType(Proberty.M1910))
+                R.id.others -> adapter.updateData(DataManager.returnVideoOfType(Proberty.CHAPLIN))
             }
         }
+
     }
 
     override fun onclickVideoItem(videoItem: Items) {

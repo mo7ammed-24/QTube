@@ -3,13 +3,13 @@ package com.example.qtube.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.jsonparser.data.Items
 import com.example.qtube.R
 import com.example.qtube.data.DataManager
-import com.example.qtube.data.domain.Feeds
 import com.example.qtube.databinding.ItemVideoBinding
 import com.example.qtube.ui.adapters.listener.VideoIntectionListener
 
@@ -25,9 +25,10 @@ class VideoAdapter(private var itemList: List<Items>, val listener: VideoIntecti
 
         holder.apply {
             binding.title.text = currentVideo.title
-            binding.time.text = DataManager.showTimeFormat(durationInMins = currentVideo.duration!!)
+            binding.time.text = DataManager.changeDurationToTimeFormat(durationInMins = currentVideo.duration!!)
             Glide.with(binding.root).load(currentVideo.art).into(binding.mainImage)
             Glide.with(binding.root).load(currentVideo.art).into(binding.profile)
+            binding.itemOfRecycle.animation = AnimationUtils.loadAnimation(holder.binding.cardView.context,R.anim.anim_item)
 
             binding.root.setOnClickListener(View.OnClickListener {
                 listener.onclickVideoItem(currentVideo)

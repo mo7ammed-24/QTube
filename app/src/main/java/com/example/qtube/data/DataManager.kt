@@ -13,31 +13,18 @@ object DataManager {
 
     //Region initialize variables
 
-
-    val videoList = mutableListOf<VideoResponse>()
-    val videos: List<VideoResponse> get() = videoList
-
-
     val feedsList = mutableListOf<Feeds>()
-    val feeds: List<Feeds> get() = feedsList
 
-    var itemsList = mutableListOf<Items>()
-    val items: List<Items> get() = itemsList
 
     val client = OkHttpClient()
     //End region
 
-    fun addVideo(videoResponse: VideoResponse) {
-        videoList.add(videoResponse)
-    }
+
 
     fun addFeeds(feeds: Feeds) {
         feedsList.add(feeds)
     }
 
-    fun addItems(items: Items) {
-        itemsList.add(items)
-    }
 
     //This function parse the data from json and store it in lists.
     fun parser(jsonUrl: String, completion: (isSucces: Boolean) -> Unit) {
@@ -58,7 +45,7 @@ object DataManager {
         })
     }
 
-    fun sortFeedsBy (property : Proberty) :List<Items>
+    fun returnVideoOfType (property : Proberty) :List<Items>
             = when (property) {
         Proberty.ALL -> {
             feedsList[0].items as List<Items> + feedsList[1].items as List<Items> + feedsList[2].items as List<Items>
@@ -77,7 +64,7 @@ object DataManager {
 
     }
 
-    fun showTimeFormat(durationInMins:String): String {
+    fun changeDurationToTimeFormat(durationInMins:String): String {
         val durationInMinsNumber = durationInMins.toLong()
         val minutes = durationInMinsNumber/60
         val seconds = durationInMinsNumber/360
