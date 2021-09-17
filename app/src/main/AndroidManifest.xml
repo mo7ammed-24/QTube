@@ -13,8 +13,8 @@
         <activity
             android:name=".ui.PlayerActivity"
             android:exported="true"
-            android:screenOrientation="landscape"
-            android:configChanges="orientation|keyboardHidden"/>
+            android:noHistory="true"
+            />
 
         <activity
             android:name=".ui.MainActivity"

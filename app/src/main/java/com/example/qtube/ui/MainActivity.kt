@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity(), VideoIntectionListener {
         intent.apply {
             putExtra(Constants.VIDEO_URL, videoItem.url)
             putExtra(Constants.VIDEO_TITLE, videoItem.title)
+            putExtra(Constants.VIDEO_DESCRIPTION,videoItem.description)
+            putExtra(Constants.VIDEO_DURATION,videoItem.duration)
         }
         startActivity(intent)
     }
