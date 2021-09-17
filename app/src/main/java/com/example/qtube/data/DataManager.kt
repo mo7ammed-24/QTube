@@ -40,10 +40,8 @@ object DataManager {
     }
 
     //This function parse the data from json and store it in lists.
-    fun parser(jsonUrl: String, completion: (isCompleted: Boolean) -> Unit) {
-        cleanJson(jsonUrl)
+    fun parser(jsonUrl: String, completion: (isSucces: Boolean) -> Unit) {
         val request = Request.Builder().url(jsonUrl).build()
-
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 //TODO Display lotti animation of 404 error or something XD.
@@ -59,14 +57,6 @@ object DataManager {
             }
         })
     }
-
-    //This function clean the json from unwanted information
-    private fun cleanJson(jsonString: String) {
-        jsonString.replace("backgrounds", "").replace("ratings", "")
-    }
-
-
-
 
     fun sortFeedsBy (property : Proberty) :List<Items>
             = when (property) {

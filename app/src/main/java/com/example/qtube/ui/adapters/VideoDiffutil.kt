@@ -18,5 +18,4 @@ class VideoDiffutil(val oldList: List<Items>, val newList: List<Items>) : DiffUt
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         return true
     }
-
 }

@@ -13,31 +13,37 @@ import com.example.qtube.ui.adapters.listener.VideoIntectionListener
 import com.example.qtube.util.Proberty
 import android.annotation.SuppressLint
 import android.util.Log
+import android.widget.Toast
 
 
-class MainActivity : AppCompatActivity() , VideoIntectionListener {
-    lateinit var binding:ActivityMainBinding
+class MainActivity : AppCompatActivity(), VideoIntectionListener {
+    lateinit var binding: ActivityMainBinding
     lateinit var adapter: VideoAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setTheme(R.style.Theme_QTube)
         setContentView(binding.root)
         setup()
     }
 
-    fun setup(){
-            DataManager.parser(Constants.JSON_URL) {
+    fun setup() {
+        DataManager.parser(Constants.JSON_URL) { isSucces ->
+            if (isSucces) {
                 runOnUiThread {
                     adapter = VideoAdapter(itemList = DataManager.sortFeedsBy(Proberty.ALL), this)
                     binding.recyclerView.adapter = adapter
                 }
                 chipGroupFunction()
             }
+            else
+            {
+                Toast.makeText(this,"Try again later",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     @SuppressLint("WrongViewCast")
-
     private fun chipGroupFunction() {
         binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
@@ -47,8 +53,6 @@ class MainActivity : AppCompatActivity() , VideoIntectionListener {
                 R.id.others -> adapter.updateData(DataManager.sortFeedsBy(Proberty.CHAPLIN))
             }
         }
-
-
     }
 
     override fun onclickVideoItem(videoItem: Items) {
@@ -57,10 +61,6 @@ class MainActivity : AppCompatActivity() , VideoIntectionListener {
             putExtra(Constants.VIDEO_URL, videoItem.url)
             putExtra(Constants.VIDEO_TITLE, videoItem.title)
         }
-
         startActivity(intent)
     }
-
-
-
 }
