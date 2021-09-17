@@ -10,12 +10,9 @@ import com.example.qtube.data.DataManager
 import com.example.qtube.databinding.ActivityMainBinding
 import com.example.qtube.ui.adapters.VideoAdapter
 import com.example.qtube.ui.adapters.listener.VideoIntectionListener
-import com.example.qtube.util.Probarty
+import com.example.qtube.util.Proberty
 import android.annotation.SuppressLint
-
-import com.google.android.material.chip.ChipGroup
-
-
+import android.util.Log
 
 
 class MainActivity : AppCompatActivity() , VideoIntectionListener {
@@ -30,28 +27,26 @@ class MainActivity : AppCompatActivity() , VideoIntectionListener {
     }
 
     fun setup(){
-        runOnUiThread{
-            DataManager.parser(Constants.mainUrl)
+            DataManager.parser(Constants.JSON_URL)
+    Thread.sleep(20000)
 
+        runOnUiThread {
+            adapter = VideoAdapter(itemList = DataManager.sortFeedsBy(Proberty.ALL), this)
+            binding.recyclerView.adapter = adapter
         }
-        adapter = VideoAdapter(DataManager.items, this)
-        binding.recyclerView.adapter = adapter
 
-       // chipGroupFunction()
+        chipGroupFunction()
     }
 
     @SuppressLint("WrongViewCast")
 
     private fun chipGroupFunction() {
-  //      val chipGroup = binding.chipGroup
-//        val checkedChipId = chipGroup.checkedChipId // Returns View.NO_ID if singleSelection = false
-//        val checkedChipIds = chipGroup.checkedChipIds // Returns a list of the selected chips' IDs, if any
-
-        val chipGroup = findViewById<ChipGroup>(R.id.chip_group)
-        chipGroup.setOnCheckedChangeListener { _, checkedId ->
+        binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.all -> adapter.updateData(DataManager.sortFeedsBy(Probarty.Year))
-                R.id.year -> adapter.updateData(DataManager.sortFeedsBy(Probarty.Year))
+                R.id.all -> adapter.updateData(DataManager.sortFeedsBy(Proberty.ALL))
+                R.id.historical -> adapter.updateData(DataManager.sortFeedsBy(Proberty.HISTORICAL))
+                R.id.year -> adapter.updateData(DataManager.sortFeedsBy(Proberty.M1910))
+                R.id.others -> adapter.updateData(DataManager.sortFeedsBy(Proberty.CHAPLIN))
             }
         }
 

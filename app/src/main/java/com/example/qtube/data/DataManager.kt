@@ -4,7 +4,7 @@ import VideoResponse
 import android.util.Log
 import com.example.jsonparser.data.Items
 import com.example.qtube.data.domain.Feeds
-import com.example.qtube.util.Probarty
+import com.example.qtube.util.Proberty
 import com.google.gson.Gson
 import okhttp3.*
 import java.io.IOException
@@ -21,7 +21,7 @@ object DataManager {
     val feedsList = mutableListOf<Feeds>()
     val feeds: List<Feeds> get() = feedsList
 
-    val itemsList = mutableListOf<Items>()
+    var itemsList = mutableListOf<Items>()
     val items: List<Items> get() = itemsList
 
     val client = OkHttpClient()
@@ -55,10 +55,7 @@ object DataManager {
                     //Loop through feeds to store object in feeds list.
                     response.feed?.forEach { addFeeds(it) }
 
-                    //Loop through items to store objects in items list.
-                    response.feed?.forEach { it.items?.forEach { it -> addItems(it) } }
                 }
-                Log.i("test", items.toString())
             }
         })
     }
@@ -69,21 +66,24 @@ object DataManager {
     }
 
 
-    fun itemsSize() = items.size
-    fun feedsSize() = feeds.size
-    fun videosSize() = videos.size
 
 
-
-    fun sortFeedsBy (property : Probarty) :List<Items>
+    fun sortFeedsBy (property : Proberty) :List<Items>
             = when (property) {
-        Probarty.ALL -> {
-            items.sortedByDescending { it.id }
+        Proberty.ALL -> {
+            feedsList[0].items as List<Items> + feedsList[1].items as List<Items> + feedsList[2].items as List<Items>
         }
 
-        Probarty.Year -> {
-            items.sortedByDescending { it.year }
+        Proberty.HISTORICAL -> {
+            feedsList[1].items as List<Items>
         }
+        Proberty.M1910 -> {
+            feedsList[2].items as List<Items>
+        }
+        Proberty.CHAPLIN -> {
+            feedsList[3].items as List<Items>
+        }
+
 
     }
 

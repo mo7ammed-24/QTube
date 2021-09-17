@@ -55,7 +55,7 @@
 
 
     <ScrollView
-        android:id="@+id/chip_group"
+        android:id="@+id/scroll_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/line">
 
         <com.google.android.material.chip.ChipGroup
-
+            android:id="@+id/chip_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -81,54 +81,29 @@
                 />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/historical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Historical"
+                android:checked="true"
+                />
+
+            <com.google.android.material.chip.Chip
                 android:id="@+id/year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Year"
+                android:text="1910"
                 android:checked="true"
                 />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/others"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Films"
+                android:text="Others"
                 android:checked="true"
                 />
 
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reports"
-                android:checked="true"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Series"
-                android:checked="true"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Series"
-                android:checked="true"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Series"
-                android:checked="true"
-                />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Series"
-                android:checked="true"
-                />
         </com.google.android.material.chip.ChipGroup>
     </ScrollView>
 
@@ -143,7 +118,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chip_group"
+        app:layout_constraintTop_toBottomOf="@+id/scroll_view"
         tools:listitem="@layout/item_video" />
 
 
