@@ -25,6 +25,8 @@
     <androidx.appcompat.widget.SearchView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:inputType="text"
+        app:queryHint="Video Title ..."
         android:src="@drawable/ic_baseline_search_24"
         app:layout_constraintBottom_toBottomOf="@+id/logo"
         app:layout_constraintEnd_toStartOf="@+id/profile_top"

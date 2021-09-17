@@ -14,9 +14,10 @@ import com.example.qtube.util.Proberty
 import android.annotation.SuppressLint
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 
 
-class MainActivity : AppCompatActivity(), VideoIntectionListener {
+class MainActivity : AppCompatActivity(), VideoIntectionListener, SearchView.OnQueryTextListener {
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: VideoAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,8 +67,16 @@ class MainActivity : AppCompatActivity(), VideoIntectionListener {
             putExtra(Constants.VIDEO_URL, videoItem.url)
             putExtra(Constants.VIDEO_TITLE, videoItem.title)
             putExtra(Constants.VIDEO_DESCRIPTION,videoItem.description)
-            putExtra(Constants.VIDEO_DURATION,videoItem.duration)
         }
         startActivity(intent)
     }
+
+    override fun onQueryTextSubmit(query: String?) :Boolean {
+        val filteredList = DataManager.returnVideoOfType(Proberty.ALL).filter { it.title != query }
+        adapter.updateData(filteredList)
+        binding.recyclerView.adapter = adapter
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?) = true
 }

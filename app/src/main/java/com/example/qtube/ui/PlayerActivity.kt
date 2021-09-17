@@ -39,13 +39,12 @@ class PlayerActivity : AppCompatActivity(), VideoIntectionListener {
         binding.videoPlayer.player = player
         binding.videoTitle.text = intent.getStringExtra(Constants.VIDEO_TITLE).toString()
         binding.videoDescription.text = intent.getStringExtra(Constants.VIDEO_DESCRIPTION).toString()
-        val oldVideoDuration = intent.getStringExtra(Constants.VIDEO_DESCRIPTION)
         val dataSourceFactory = DefaultDataSourceFactory(this, "sample")
         val mediaSource =  ProgressiveMediaSource.Factory(dataSourceFactory)
             .createMediaSource(MediaItem.fromUri(Uri.parse(videoURL)))
         player?.setMediaSource(mediaSource)
         player?.prepare()
-        val newList = DataManager.returnVideoOfType(Proberty.ALL).filter {it.url!=videoURL  }.sortedBy { it.id }
+        val newList = DataManager.returnVideoOfType(Proberty.ALL).filter {it.url!=videoURL  }.sortedBy{it.year}
         adapter = VideoAdapter(newList, this)
         binding.recyclerView.adapter = adapter
         player?.play()
@@ -62,7 +61,6 @@ class PlayerActivity : AppCompatActivity(), VideoIntectionListener {
             putExtra(Constants.VIDEO_URL, videoItem.url)
             putExtra(Constants.VIDEO_TITLE, videoItem.title)
             putExtra(Constants.VIDEO_DESCRIPTION,videoItem.description)
-            putExtra(Constants.VIDEO_DURATION,videoItem.duration)
         }
         startActivity(intent)
     }}
